@@ -96,5 +96,12 @@ namespace UserManagementAPI.Controllers
             return Ok();
         }
 
+        [Authorize]
+        [HttpGet("GetUserById")]
+        public async Task<ActionResult<User>> GetUserById(int id)
+        {
+            var user = await _unitOfWork.UserRepository.GetAsync(id);
+            return Ok(user);
+        }
     }
 }
